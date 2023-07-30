@@ -1,0 +1,164 @@
+{% extends "layout.html" %}
+{% block body %}
+<style>
+    /* CSS cho button */
+    .center-align-button {
+        margin-top: 70px !important;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px; /* Khoảng cách giữa các paragraphs và button bên dưới */
+    }
+
+    .spinner-border {
+        display: none;
+    }
+
+
+
+
+
+
+
+</style>
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Check vietnamese</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#!">Check vietnamese</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pcoded-content">
+
+    <!-- [ Main Content ] start -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                aria-orientation="vertical">
+                                <li><a class="nav-link text-left active" id="v-pills-from-file-tab" data-toggle="pill"
+                                       href="#v-pills-from-file" role="tab" aria-controls="v-pills-home"
+                                       aria-selected="true">From file</a></li>
+                                <li><a class="nav-link text-left" id="v-pills-from-folder-tab" data-toggle="pill"
+                                       href="#v-pills-from-folder" role="tab" aria-controls="v-pills-profile"
+                                       aria-selected="false">From folder</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-9 col-sm-12">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade show active" id="v-pills-from-file" role="tabpanel"
+                                     aria-labelledby="v-pills-from-file-tab">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form action="/check-vietnamese" method="POST" enctype="multipart/form-data">
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <div class="custom-file">
+                                                            <input type="file" name="filevn" class="custom-file-input"
+                                                                   id="validatedFromVNFile"
+                                                                   required>
+                                                            <label class="custom-file-label" for="validatedFromVNFile">Choose
+                                                                file...</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button type="submit" class="btn  btn-success" >
+                                                            <span id="spinner" class="spinner-border spinner-border-sm"
+                                                                  role="status"></span>
+                                                            Check
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="card" style="margin-top:20px">
+                                            <div class="card-body table-border-style">
+                                                <div class="row">
+                                                    <div class="table-responsive">
+                                                        <table id="connection-table" class="table table-striped">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>SheetName</th>
+                                                                <th>cell adress</th>
+                                                                <th>Vietnamese value</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for item in checkData %}
+                                                            <tr>
+                                                                <td>{{item.index}}</td>
+                                                                <td>{{item.sheet_name}}</td>
+                                                                <td>{{item.cell_address}}</td>
+                                                                <td>{{item.cell_value}}</td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-from-folder" role="tabpanel"
+                                     aria-labelledby="v-pills-from-folder-tab">
+                                    <div class="row">
+
+                                        <div class="col-md-10">
+                                            <form>
+                                                <div class="custom-file">
+                                                    <input type="text" class="custom-file-input"
+                                                           id="validatedFromVNFolder"
+                                                           required>
+                                                    <label class="custom-file-label" for="validatedFromVNFolder">Choose
+                                                        folder...</label>
+                                                </div>
+
+                                            </form>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn  btn-success" onclick="checkFolder()">
+                                                <span id="spinner1" class="spinner-border spinner-border-sm"
+                                                      role="status"></span>
+                                                Check
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ tabs ] end -->
+
+    </div>
+
+    <!-- [ Main Content ] end -->
+</div>
+
+{% endblock %}

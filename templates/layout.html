@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>App Mysql to PostgreeSql</title>
+    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 11]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded"/>
+    <!-- Favicon icon -->
+    <link rel="icon" href="{{url_for('static', filename='images/favicon.ico')}}" type="image/x-icon">
+    <!-- vendor css -->
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
+
+</head>
+<body class="">
+<!-- [ Pre-loader ] start -->
+<div class="loader-bg">
+    <div class="loader-track">
+        <div class="loader-fill"></div>
+    </div>
+</div>
+<!-- [ Pre-loader ] End -->
+<!-- [ navigation menu ] start -->
+<nav class="pcoded-navbar  ">
+    <div class="navbar-wrapper  ">
+        <div class="navbar-content scroll-div ">
+
+            <div class="">
+                <div class="main-menu-header">
+                    <img class="img-radius" src="{{url_for('static', filename='images/user/avatar-2.jpg')}}"
+                         alt="User-Profile-Image">
+
+                    <div class="user-details">
+                        <span>Ducnh44</span>
+                        <div id="more-details">PID.SKU-COE<i class="fa fa-chevron-down m-l-5"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="nav pcoded-inner-navbar ">
+
+                <li class="nav-item pcoded-menu-caption">
+                    <label>Options</label>
+                </li>
+                <li class="nav-item">
+                    <a href="/check-vietnamese" class="nav-link "><span class="pcoded-micon"><i
+                            class="fa fa-random"></i></span><span class="pcoded-mtext">Check vietnamese</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="/check-japanese" class="nav-link "><span class="pcoded-micon"><i
+                            class="fa fa-magic"></i></span><span class="pcoded-mtext">Check japanese</span></a>
+                </li>
+                <!--                <li class="nav-item">-->
+                <!--                    <a href="form_elements.html" class="nav-link "><span class="pcoded-micon"><i-->
+                <!--                            class="fa fa-life-ring"></i></span><span class="pcoded-mtext">Help</span></a>-->
+                <!--                </li>-->
+
+            </ul>
+
+
+        </div>
+    </div>
+</nav>
+<!-- [ navigation menu ] end -->
+<!-- [ Header ] start -->
+
+
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+
+        {% block body %}
+
+        {% endblock %}
+
+        <!-- [ Main Content ] end -->
+    </div>
+</div>
+<!-- [ Main Content ] end -->
+<!-- Warning Section start -->
+<!-- Older IE warning message -->
+<!--[if lt IE 11]>
+<div class="ie-warning">
+    <h1>Warning!!</h1>
+    <p>You are using an outdated version of Internet Explorer, please upgrade
+        <br/>to any of the following web browsers to access this website.
+    </p>
+    <div class="iew-container">
+        <ul class="iew-download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="assets/images/browser/chrome.png" alt="Chrome">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="assets/images/browser/firefox.png" alt="Firefox">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="assets/images/browser/opera.png" alt="Opera">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="assets/images/browser/safari.png" alt="Safari">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="assets/images/browser/ie.png" alt="">
+                    <div>IE (11 & above)</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p>Sorry for the inconvenience!</p>
+</div>
+<![endif]-->
+<!-- Warning Section Ends -->
+
+<!-- Required Js -->
+<script src="{{url_for('static', filename='js/vendor-all.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/plugins/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/pcoded.min.js')}}"></script>
+
+<!-- Apex Chart -->
+<script src="{{url_for('static', filename='js/plugins/apexcharts.min.js')}}"></script>
+
+<!-- custom-chart js -->
+<script src="{{url_for('static', filename='js/pages/dashboard-main.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.js"></script>
+
+<script>
+    // Lắng nghe sự kiện khi người dùng chọn tệp
+    document.getElementById("validatedFromVNFile").addEventListener("change", function(event) {
+        // Lấy thông tin về tệp đã chọn
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+
+        // Kiểm tra xem người dùng đã chọn tệp chưa
+        if (file) {
+            // Lấy đường dẫn của tệp đã chọn
+            const filePath = URL.createObjectURL(file);
+
+            // Hiển thị đường dẫn tệp trên label
+            const label = fileInput.nextElementSibling;
+            label.innerText = file.name; // Hiển thị tên tệp
+
+        }
+    });
+</script>
+
+</body>
+
+</html>
